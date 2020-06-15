@@ -1,0 +1,13 @@
+one: 
+  id: 1
+  username: "carlospaz"
+  email: "carlospaz@email.com"
+  
+two: 
+  id: 2
+  username: "ramiroroque"
+  email: "ramiroroque@email.com"
+three: 
+  id: 3
+  username: "juanperez"
+  email: "juanperez@email.com"
