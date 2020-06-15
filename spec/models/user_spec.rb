@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe ' Model.User' do
     fixtures :users
-    let(:user){FactoryBot.create :user}
+    let(:user) { FactoryBot.create :user }
 
     context 'validates field using fixtures' do
       it 'username must be valid' do
