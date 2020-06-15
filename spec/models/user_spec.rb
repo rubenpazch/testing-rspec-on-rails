@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -18,6 +16,33 @@ RSpec.describe User, type: :model do
         user_new = User.new(username: 'juanperez')
         user_new.valid?
         expect(user_new.errors[:username]).to include('Username already exists')
+      end
+    end
+
+    context 'username must include the message' do
+      it 'must be given ' do
+        users(:one).username = nil
+        users(:one).valid?
+        expect(users(:one).errors[:username]).to include('Username must be given')
+      end
+
+      it 'length between 6 to 20 characters' do
+        users(:one).username = '123'
+        users(:one).valid?
+        expect(users(:one).errors[:username]).to include('Username length must be between 6 to 20 characters')
+      end
+    end
+
+    context 'username must include the message' do
+      it 'length between 6 to 20 characters' do
+        users(:one).username = '123abcgjhasjdhasjkdhasjdkhasjdkhasdjkas'
+        users(:one).valid?
+        expect(users(:one).errors[:username]).to include('Username length must be between 6 to 20 characters')
+      end
+      it 'must be alphanumeric' do
+        users(:one).username = ' ruben22123123'
+        users(:one).valid?
+        expect(users(:one).errors[:username]).to include('Username must be alphanumeric')
       end
     end
   end
