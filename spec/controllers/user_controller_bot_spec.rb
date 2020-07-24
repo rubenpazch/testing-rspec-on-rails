@@ -18,8 +18,7 @@ RSpec.describe UsersController, type: :controller do
       it 'assigns users' do
         User.first.delete
         User.first.delete
-        User.first.delete
-        puts User.all
+        User.first.delete        
         get :index
         expect(assigns(:users)).to eq([user1])
       end
@@ -37,10 +36,12 @@ RSpec.describe UsersController, type: :controller do
         }
         expect(response).to redirect_to(assigns(:user))
       end
-
+    end
+    
+    describe '#new ' do 
       it 'render :new' do
         new_user = FactoryBot.build :user
-        post :create, params: {
+        get :new, params: {
           user: {
             id: new_user.id,
             username: 'asjdhajsdhasjdhaksjdh234723648723642783',
@@ -49,6 +50,27 @@ RSpec.describe UsersController, type: :controller do
         }
         expect(response).to render_template(:new)
       end
+    end 
+
+    describe '#edit ' do 
+      it 'render :edit' do
+        new_user = FactoryBot.create :user
+        get :edit, params: {
+            id: new_user.id
+        }
+        expect(response).to render_template(:edit)
+      end
+    end 
+
+
+    describe '#update' do
+      it 'updates the wishlist and redirects wishlists_path' do
+        new_user = FactoryBot.create :user
+        patch :update, params: { user: { username: 'newusername', email: 'losvengadores@hotmail.com' }, id: new_user.id }
+        expect(response).to redirect_to @user
+      end
+
     end
+
   end
 end
