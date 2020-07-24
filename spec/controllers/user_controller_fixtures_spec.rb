@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: :controller do
         post :create, params: {
           user: {
             id: new_user.id,
-            username: "asjdhajsdhasjdhaksjdh234723648723642783",
+            username: 'asjdhajsdhasjdhaksjdh234723648723642783',
             email: new_user.email
           }
         }

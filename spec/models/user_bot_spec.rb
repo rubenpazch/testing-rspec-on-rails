@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
       it 'username must not be valid' do
         user1.username = nil
         expect(user1).to_not be_valid
-      end      
+      end
     end
   end
 end
